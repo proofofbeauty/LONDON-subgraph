@@ -1,11 +1,11 @@
 {
-  "name": "hash-subgraph",
+  "name": "london-subgraph",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ proofofbeauty/Hash",
-    "deploy-rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ proofofbeauty/hash-rinkeby ./subgraph.rinkeby.yaml",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ proofofbeauty/London",
+    "deploy-rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ proofofbeauty/London-rinkeby ./subgraph.rinkeby.yaml",
     "create-local": "graph create --node http://localhost:8020/ proofofbeauty/Subgraph",
     "remove-local": "graph remove --node http://localhost:8020/ proofofbeauty/Subgraph",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 proofofbeauty/Subgraph"

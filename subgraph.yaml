@@ -3,109 +3,26 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Hash
+    name: London 
     network: mainnet
     source:
-      address: "0xE18a32192ED95b0FE9D70D19e5025f103475d7BA"
-      abi: ERC1155
-      startBlock: 11637313
+      address: "0x6b175474e89094c44da98b954eedeac495271d0f"
+      abi: ERC20
+      startBlock: 0
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - Hash
-        - HashOwnership
-        - HashOwner
-        - HashMaxIndex
+        - Token
+        - TokenOwnership
+        - TokenMint
       abis:
-        - name: ERC1155
-          file: ./abis/ERC1155.json
+        - name: ERC20
+          file: ./abis/ERC20.json
       eventHandlers:
-        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
-          handler: handleTransferBatchHash
-        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
-          handler: handleTransferSingleHash
-      file: ./src/hash.ts
-  - kind: ethereum/contract
-    name: HashRegistry
-    network: mainnet
-    source:
-      address: "0x29ca58d4a0857Ae3F0608a546cdE5f254A3F867a"
-      abi: HashRegistry
-      startBlock: 11843306
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - Hash
-      abis:
-        - name: HashRegistry
-          file: ./abis/HashRegistry.json
-      eventHandlers:
-        - event: UpdatedRegistry(uint256,uint256)
-          handler: handleUpdatedRegistry
-      file: ./src/hashRegistry.ts
-  - kind: ethereum/contract
-    name: HashMetadataRegistry
-    network: mainnet
-    source:
-      address: "0x9071044edcAFB1693b5E8b9734B7943F3AE9F6AA"
-      abi: HashMetadataRegistry
-      startBlock: 11902872
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - HashDocument
-      abis:
-        - name: HashMetadataRegistry
-          file: ./abis/HashMetadataRegistry.json
-      eventHandlers:
-        - event: UpdatedDocument(indexed uint256,indexed address,indexed string,string,uint256,bytes)
-          handler: handleUpdatedDocument
-      file: ./src/hashMetadataRegistry.ts
-  - kind: ethereum/contract
-    name: PermissionedTokenMetadataRegistry
-    network: mainnet
-    source:
-      address: "0x7e79289de44392982a84380A764CCFA86c8C0E79"
-      abi: PermissionedTokenMetadataRegistry
-      startBlock: 12514224 
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - HashAffirmedDocument
-      abis:
-        - name: PermissionedTokenMetadataRegistry
-          file: ./abis/PermissionedTokenMetadataRegistry.json
-      eventHandlers:
-        - event: UpdatedDocument(indexed uint256,indexed address,indexed string,string)
-          handler: handleUpdatedDocument
-      file: ./src/hashPanelRegistry.ts
-  - kind: ethereum/contract
-    name: SnapshotAffirmationVerifier
-    network: mainnet
-    source:
-      address: "0xA0FFF5ecFab911b8A000eE377A0C31c0052Adf5D"
-      abi: SnapshotAffirmationVerifier
-      startBlock: 12514227
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - HashAffirmation
-      abis:
-        - name: SnapshotAffirmationVerifier
-          file: ./abis/SnapshotAffirmationVerifier.json
-      eventHandlers:
-        - event: Affirmed(indexed uint256,indexed address,indexed string,bytes32,uint256,bytes)
-          handler: handleAffirmation
-      file: ./src/hashPanelRegistry.ts
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransferLondon
+      file: ./src/london.ts
     
      

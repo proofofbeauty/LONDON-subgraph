@@ -5,3 +5,4 @@ export let ZERO_ADDRESS = Address.fromString("0x00000000000000000000000000000000
 export let BIGINT_ZERO = BigInt.fromI32(0);
 export let BIGINT_ONE = BigInt.fromI32(1);
 export let BIGDECIMAL_ZERO = new BigDecimal(BIGINT_ZERO);
+export let LONDON_TOKEN_ID = "LONDON";
