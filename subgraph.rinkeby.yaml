@@ -1,0 +1,70 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Hash
+    network: rinkeby
+    source:
+      address: "0xf21AbC7a92085387397aD03FeD0723e3E63D3D52"
+      abi: ERC1155
+      startBlock: 8349340 
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Hash
+        - HashOwnership
+        - HashOwner
+        - HashMaxIndex
+      abis:
+        - name: ERC1155
+          file: ./abis/ERC1155.json
+      eventHandlers:
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatchHash
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingleHash
+      file: ./src/hash.ts
+  - kind: ethereum/contract
+    name: HashRegistry
+    network: rinkeby
+    source:
+      address: "0x6039d4C73F8285E6eBb21b7c27B0E06E1c3E4d10"
+      abi: HashRegistry
+      startBlock: 8349340
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Hash
+      abis:
+        - name: HashRegistry
+          file: ./abis/HashRegistry.json
+      eventHandlers:
+        - event: UpdatedRegistry(uint256,uint256)
+          handler: handleUpdatedRegistry
+      file: ./src/hashRegistry.ts
+  - kind: ethereum/contract
+    name: HashMetadataRegistry
+    network: rinkeby
+    source:
+      address: "0x1A1CC8ecb78D60FECde800d47370af86562D5EB6"
+      abi: HashMetadataRegistry
+      startBlock: 8349340
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - HashDocument
+      abis:
+        - name: HashMetadataRegistry
+          file: ./abis/HashMetadataRegistry.json
+      eventHandlers:
+        - event: UpdatedDocument(indexed uint256,indexed address,indexed string,string,uint256,bytes)
+          handler: handleUpdatedDocument
+      file: ./src/hashMetadataRegistry.ts
+     

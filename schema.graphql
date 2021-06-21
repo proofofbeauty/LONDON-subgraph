@@ -1,0 +1,57 @@
+type Hash @entity {
+  id: ID!
+  tokenAddress: Bytes!
+  ownership: [HashOwnership!]! @derivedFrom(field: "hash")
+  documents: [HashDocument!]! @derivedFrom(field: "hash")
+  affirmedDocuments: [HashAffirmedDocument!]! @derivedFrom(field: "hash")  
+  createdAt: BigInt!
+  removedAt: BigInt
+  hash: String
+}
+
+type HashOwnership @entity {
+  id: ID!
+  owner: Bytes!
+  hash: Hash!
+  quantity: BigInt!
+}
+
+type HashDocument @entity {
+  id: ID!
+  key: String!
+  writer: Bytes!
+  text: String!
+  createdAt: BigInt!
+  hash: Hash!
+  salt: BigInt!
+  signature: Bytes!
+}
+
+type HashOwner @entity {
+  id: ID!
+  totalQuantity: BigInt!
+}
+
+type HashMaxIndex @entity {
+  id: ID!
+  maxIndex: BigInt!
+}
+
+type HashAffirmedDocument @entity {
+  id: ID!
+  key: String!
+  writer: Bytes!
+  text: String!
+  createdAt: BigInt!
+  hash: Hash!
+  affirmations: [HashAffirmation!]! @derivedFrom(field: "document")
+}
+
+type HashAffirmation @entity {
+  id: ID!
+  document: HashAffirmedDocument
+  signature: Bytes! 
+  signer: Bytes!
+  salt: BigInt!
+  createdAt: BigInt!
+}
