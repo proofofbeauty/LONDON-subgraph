@@ -4,7 +4,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: London 
-    network: mainnet
+    network: rinkeby
     source:
       address: "0x243901455D1B8ef76678b32b4459602CC6B730ae"
       abi: ERC20

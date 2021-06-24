@@ -31,15 +31,15 @@ function transferBase(tokenAddress: Address, from: Address, to: Address, value: 
       token.tokenAddress = tokenAddress;
     }
 
-    let mintId = gasPrice.toHexString();
+    let mintId = gasPrice.toString();
     let mint = TokenMint.load(mintId);
     if (mint == null) {
-      mint = new TokenMint(LONDON_TOKEN_ID);
+      mint = new TokenMint(mintId);
       mint.gasPrice = gasPrice;
       mint.numMints = BIGINT_ZERO;
     }
     mint.numMints = mint.numMints.plus(BIGINT_ONE);
-    token.save(); 
+    mint.save(); 
     token.totalSupply = token.totalSupply.plus(value);
     token.save();
   }
