@@ -6,9 +6,9 @@ dataSources:
     name: London 
     network: mainnet
     source:
-      address: "0x6b175474e89094c44da98b954eedeac495271d0f"
+      address: "0x491D6b7D6822d5d4BC88a1264E1b47791Fd8E904"
       abi: ERC20
-      startBlock: 0
+      startBlock: 12781853 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
